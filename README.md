@@ -1,3 +1,3 @@
-Team Members: Estevan Pickett, 
+Team Members: Estevan Pickett, Trinity Lopez
 
 This is a 
