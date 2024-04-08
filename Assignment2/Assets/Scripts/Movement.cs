@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float shakeThreshold;
+    public float shakeAmount;
+
+    private Rigidbody rb;
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -18,14 +22,26 @@ public class Movement : MonoBehaviour
         Terrain terrain = Terrain.activeTerrain;
 
         Vector3 position = transform.position;
-        
+
         // set the game object's translation (not an increment)
         transform.position = position;
 
-        // translate by 0.1m on Z axis each frame for as long as
-        // the space bar is held down
-        if (Input.GetKey (KeyCode.Space))
-            // increment the game object's translation
-            transform.Translate(0, 0, 0.1f);
+        if (Input.GetKey(KeyCode.W))    // Move forward
+        {
+
+        }
+        if (Input.GetKey(KeyCode.S))    // Move backward
+        {
+
+        }
+
+        if (Mathf.Abs(rb.velocity.magnitude) < shakeAmount)    // Handle idle shake
+        {
+
+            Vector3 shakePos = transform.position;
+            shakePos.x += Random.Range(-shakeAmount, shakeAmount);
+            shakePos.z += Random.Range(-shakeAmount, shakeAmount);
+            transform.position = shakePos;
+        }
     }
 }
