@@ -4,44 +4,59 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float shakeThreshold;
-    public float shakeAmount;
+    public float moveSpeed = 5f; // Adjust this value to control movement speed
+    public float rotationSpeed = 100f; // Adjust this value to control rotation speed
+    public float hoverHeight = 1f; // Adjust this value to control hover height
+    public float hoverSpeed = 1f; // Adjust this value to control hover speed
+    public float hoverAmplitude = 0.1f; // Adjust this value to control hover amplitude
+    public float terrainHeightOffset = 0.5f; // Adjust this value to control the height offset from terrain
 
-    private Rigidbody rb;
+    private Terrain terrain;
+    private float originalY;
+    private float hoverOffset;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        terrain = Terrain.activeTerrain;
+        originalY = transform.position.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Hint: The global static variable "Terrain.activeTerrain" 
-        // may be helpful or have useful methods for user here or in
-        // other scripts.
-        Terrain terrain = Terrain.activeTerrain;
+        // Hover effect
+        Hover();
 
-        Vector3 position = transform.position;
+        // Movement controls
+        Move();
 
-        // set the game object's translation (not an increment)
-        transform.position = position;
+        // Rotation controls
+        Rotate();
+    }
 
-        if (Input.GetKey(KeyCode.W))    // Move forward
-        {
+    void Hover()
+    {
+        // Calculate hoverOffset using sine function to create a hover effect
+        hoverOffset = Mathf.Sin(Time.time * hoverSpeed) * hoverAmplitude;
 
-        }
-        if (Input.GetKey(KeyCode.S))    // Move backward
-        {
+        // Get the current terrain height under the car
+        float terrainHeight = terrain.SampleHeight(transform.position);
 
-        }
+        // Apply hover effect to car's Y position relative to terrain height
+        Vector3 newPos = transform.position;
+        newPos.y = originalY + hoverHeight + hoverOffset + terrainHeight + terrainHeightOffset;
+        transform.position = newPos;
+    }
 
-        if (Mathf.Abs(rb.velocity.magnitude) < shakeAmount)    // Handle idle shake
-        {
+    void Move()
+    {
+        float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        transform.Translate(Vector3.forward * moveAmount);
+    }
 
-            Vector3 shakePos = transform.position;
-            shakePos.x += Random.Range(-shakeAmount, shakeAmount);
-            shakePos.z += Random.Range(-shakeAmount, shakeAmount);
-            transform.position = shakePos;
-        }
+    void Rotate()
+    {
+        float rotateAmount = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+        transform.Rotate(Vector3.up, rotateAmount);
     }
 }
+
