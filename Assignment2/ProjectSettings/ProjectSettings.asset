@@ -713,11 +713,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 6c6121b3-5080-4533-9be7-892e9f18542a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Assignment2
+  organizationId: trinity10
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
