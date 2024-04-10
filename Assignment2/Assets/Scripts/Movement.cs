@@ -4,59 +4,49 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 5f; // Adjust this value to control movement speed
-    public float rotationSpeed = 100f; // Adjust this value to control rotation speed
-    public float hoverHeight = 1f; // Adjust this value to control hover height
-    public float hoverSpeed = 1f; // Adjust this value to control hover speed
-    public float hoverAmplitude = 0.1f; // Adjust this value to control hover amplitude
-    public float terrainHeightOffset = 0.5f; // Adjust this value to control the height offset from terrain
+    public float turnSpeed;
+    public float forwardSpeed;
+    public float hoverHeight;
+    public float shakeThreshold;
+    public float shakeAmount;
 
+    private Rigidbody rb;
     private Terrain terrain;
-    private float originalY;
-    private float hoverOffset;
+    private float terrainHeight;
+    private Vector3 desiredPosition;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         terrain = Terrain.activeTerrain;
-        originalY = transform.position.y;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // Hover effect
-        Hover();
+        // Calc float height
+        terrainHeight = terrain.SampleHeight(transform.position);
+        float floatHeight = terrainHeight + hoverHeight;
+        float heightDifference = floatHeight - transform.position.y;
 
-        // Movement controls
-        Move();
+        // Calculate the desired position
+        desiredPosition = new Vector3(transform.position.x, floatHeight, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, desiredPosition, 10 * Time.fixedDeltaTime);
 
-        // Rotation controls
-        Rotate();
-    }
+        // Handle movement
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-    void Hover()
-    {
-        // Calculate hoverOffset using sine function to create a hover effect
-        hoverOffset = Mathf.Sin(Time.time * hoverSpeed) * hoverAmplitude;
+        transform.Rotate(Vector3.up * horizontal * turnSpeed * Time.fixedDeltaTime);
+        transform.Translate(Vector3.forward * vertical * forwardSpeed * Time.fixedDeltaTime);
 
-        // Get the current terrain height under the car
-        float terrainHeight = terrain.SampleHeight(transform.position);
 
-        // Apply hover effect to car's Y position relative to terrain height
-        Vector3 newPos = transform.position;
-        newPos.y = originalY + hoverHeight + hoverOffset + terrainHeight + terrainHeightOffset;
-        transform.position = newPos;
-    }
-
-    void Move()
-    {
-        float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-        transform.Translate(Vector3.forward * moveAmount);
-    }
-
-    void Rotate()
-    {
-        float rotateAmount = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.up, rotateAmount);
+        if (Mathf.Abs(rb.velocity.magnitude) < shakeThreshold)
+        {
+            // Apply shaking effect
+            Vector3 shakePos = transform.position;
+            shakePos.x += Random.Range(-shakeAmount, shakeAmount);
+            shakePos.z += Random.Range(-shakeAmount, shakeAmount);
+            transform.position = shakePos;
+        }
     }
 }
-
