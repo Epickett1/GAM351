@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1208,6 +1208,7 @@ GameObject:
   - component: {fileID: 1951717947}
   - component: {fileID: 1951717946}
   - component: {fileID: 1951717948}
+  - component: {fileID: 1951717949}
   m_Layer: 0
   m_Name: Average Car
   m_TagString: Untagged
@@ -1223,7 +1224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951717944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3.82, z: -5.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1281,6 +1282,20 @@ MonoBehaviour:
   laserSpawnPoint: {fileID: 1957035708}
   laserPrefab: {fileID: 209958384747705441, guid: 61483f565dc3afc48ac7d40d2b3962ca, type: 3}
   laserSpeed: 150
+--- !u!136 &1951717949
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951717944}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.8
+  m_Height: 26.3
+  m_Direction: 1
+  m_Center: {x: 0, y: -4, z: 0}
 --- !u!1 &1957035707
 GameObject:
   m_ObjectHideFlags: 0
