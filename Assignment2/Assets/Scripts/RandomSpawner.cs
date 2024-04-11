@@ -12,7 +12,7 @@ public class RandomSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (totalSpawned < 7)
+        if (totalSpawned < 9)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
