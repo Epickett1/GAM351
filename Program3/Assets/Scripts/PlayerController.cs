@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour
     List<string> kickAnims = new List<string> { "Kick1", "Kick2", "Kick3", "Kick4", "Kick5" };
     bool kicking = false;
 
+    AudioManager audioManager;
+
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +45,8 @@ public class PlayerController : MonoBehaviour
         // allow movement when input detected and not crouching
         if (input.magnitude > 0.001 && !animController.GetBool ("Crouch") && !kicking)
         {
+            // play footstep sound 
+            audioManager.PlayFoley(audioManager.footsteps);
             // rotations are about y axis
             rigidBody.AddRelativeTorque(new Vector3(0, input.y * impulseTorque * Time.deltaTime, 0));
             // motion is forward/backward (about z axis)
