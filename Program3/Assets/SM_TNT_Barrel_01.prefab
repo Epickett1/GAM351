@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6814438411890844518}
   - component: {fileID: 6824345788919383846}
   - component: {fileID: 6774432860212701434}
-  - component: {fileID: 7221801897497721843}
+  - component: {fileID: 8153344492198535836}
   - component: {fileID: 2306629680670973995}
   m_Layer: 3
   m_Name: SM_TNT_Barrel_01
@@ -100,7 +100,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43267929025862752, guid: 1cb91b3841210914097abd9a57d25f93, type: 2}
---- !u!54 &7221801897497721843
+--- !u!54 &8153344492198535836
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &2306629680670973995
 MonoBehaviour:
   m_ObjectHideFlags: 0
