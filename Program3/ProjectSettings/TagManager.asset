@@ -7,6 +7,9 @@ TagManager:
   - barrelPrefab
   - targetPrefab
   - Audio
+  - Bandit
+  - Explode
+  - PlayerTarget
   layers:
   - Default
   - TransparentFX

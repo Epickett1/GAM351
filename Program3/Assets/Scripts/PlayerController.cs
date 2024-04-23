@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     public float impulseForce  = 170000.0f;
     public float impulseTorque = 3000.0f;
+    public GameObject hero;
 
+    [Header("Kick")]
     [Range(1, 5)]
     public int kickOptions = 5; 
     public float kickForce = 500f;
     public float kickDistance = 3f;
     public LayerMask kickMask;
-
-    public GameObject hero;
-
-    Animator animController;
-    Rigidbody rigidBody;
     List<string> kickAnims = new List<string> { "Kick1", "Kick2", "Kick3", "Kick4", "Kick5" };
     bool kicking = false;
 
+    [Header("Shoot")]
+    public GameObject bulletPrefab;
+    public Transform bulletSpawn;
+    public float timeBtwShots;
+    private float _time;
+
+
+    Animator animController;
+    Rigidbody rigidBody;
     AudioManager audioManager;
 
     private void Awake() {
@@ -34,6 +41,7 @@ public class PlayerController : MonoBehaviour
         // character and player's corresponding rigid body
         animController = hero.GetComponent<Animator> ();
         rigidBody      = GetComponent<Rigidbody>();
+        _time = timeBtwShots;
     }
 
     // Update is called once per frame
@@ -65,21 +73,28 @@ public class PlayerController : MonoBehaviour
                 animController.SetBool("Crouch", false);
         }
 
-        // Only allow kick when not moving and not crouching
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Kick
+        if (Input.GetKeyDown(KeyCode.Space) && !kicking)
         {
-            if (!kicking)
-            {
-                int rand = Random.Range(0, kickOptions);
-                animController.SetBool(kickAnims[rand], true);
-                kicking = true;
-                StartCoroutine(KickObjects());
-                StartCoroutine(PlayKick(rand));
-                
-            }
+            Kick();
         }
-    }
 
+        // Shoot
+        if (Input.GetKeyDown(KeyCode.F) && !kicking)
+        {
+            Shoot();
+        }
+        _time += Time.deltaTime;
+    }
+    
+    void Kick()
+    {
+        int rand = Random.Range(0, kickOptions);
+        animController.SetBool(kickAnims[rand], true);
+        kicking = true;
+        StartCoroutine(KickObjects());
+        StartCoroutine(PlayKick(rand));
+    }
     IEnumerator PlayKick(int rand)
     {
         yield return new WaitForSeconds(1);
@@ -106,6 +121,15 @@ public class PlayerController : MonoBehaviour
                 // Apply the kick force to the object's rigidbody
                 rb.AddForce(kickDirection * kickForce, ForceMode.Impulse);
             }
+        }
+    }
+
+    void Shoot()
+    {
+        if (_time >= timeBtwShots)
+        {
+            Instantiate(bulletPrefab, bulletSpawn.position, transform.rotation);
+            _time = 0f;
         }
     }
 }
