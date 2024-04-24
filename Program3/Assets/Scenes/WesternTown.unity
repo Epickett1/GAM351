@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18145958, g: 0.22709075, b: 0.307393, a: 1}
+  m_IndirectSpecularColor: {r: 0.18146001, g: 0.22709143, b: 0.3073942, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3439,6 +3439,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635453728}
     m_Modifications:
+    - target: {fileID: 2306629680670973995, guid: 9b52f03fe0f7dee4498e12d75c12deee,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 4137160601120793940, guid: 632ea80681a251647b5f767b52cda0ae,
+        type: 3}
     - target: {fileID: 6837315413801133620, guid: 9b52f03fe0f7dee4498e12d75c12deee,
         type: 3}
       propertyPath: m_Name
@@ -4483,6 +4489,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635453728}
     m_Modifications:
+    - target: {fileID: 2306629680670973995, guid: 9b52f03fe0f7dee4498e12d75c12deee,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 4137160601120793940, guid: 632ea80681a251647b5f767b52cda0ae,
+        type: 3}
     - target: {fileID: 6837315413801133620, guid: 9b52f03fe0f7dee4498e12d75c12deee,
         type: 3}
       propertyPath: m_Name
@@ -21043,6 +21055,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635453728}
     m_Modifications:
+    - target: {fileID: 2306629680670973995, guid: 9b52f03fe0f7dee4498e12d75c12deee,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 4137160601120793940, guid: 632ea80681a251647b5f767b52cda0ae,
+        type: 3}
     - target: {fileID: 6837315413801133620, guid: 9b52f03fe0f7dee4498e12d75c12deee,
         type: 3}
       propertyPath: m_Name
@@ -68836,6 +68854,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1635453728}
     m_Modifications:
+    - target: {fileID: 2306629680670973995, guid: 9b52f03fe0f7dee4498e12d75c12deee,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 4137160601120793940, guid: 632ea80681a251647b5f767b52cda0ae,
+        type: 3}
     - target: {fileID: 6837315413801133620, guid: 9b52f03fe0f7dee4498e12d75c12deee,
         type: 3}
       propertyPath: m_Name
