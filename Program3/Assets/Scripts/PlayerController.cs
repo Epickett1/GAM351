@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     AudioManager audioManager;
 
     private void Awake() {
-       // audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
 
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (input.magnitude > 0.001 && !animController.GetBool ("Crouch") && !kicking)
         {
             // play footstep sound 
-            //audioManager.PlayFoley(audioManager.footsteps);
+            audioManager.PlayFoley(audioManager.footsteps);
             // rotations are about y axis
             rigidBody.AddRelativeTorque(new Vector3(0, input.y * impulseTorque * Time.deltaTime, 0));
             // motion is forward/backward (about z axis)
