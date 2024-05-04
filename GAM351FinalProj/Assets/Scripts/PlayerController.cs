@@ -1,30 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
-    private Rigidbody rb;
+    [Header("Camera Settings")]
+    public AimDownSights ads;
+    public Transform camTarget;
+    public float turnSpeed = 15f;
+    new Camera camera;
 
-    void Start()
+    [Header("Movement")]
+    public float speed = 5f;
+    public float jumpStrength = 10f;
+    public float gravity = 9.8f;
+
+    [Header("Combat")]
+    public PlayerShoot gun;
+    CharacterController controller;
+    
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
+        camera = Camera.main;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // Movement
+        // Camera
+        float yCam = camera.transform.rotation.eulerAngles.y;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCam, 0), turnSpeed * Time.fixedDeltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            ads.AimIn();
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            ads.AimOut();
+        }
+
+        // Player Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical) * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
 
-        // Jump
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
+        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+
+/*        if (controller.isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+             movement.y = 0f;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                movement.y = jumpStrength;
+            }
+        }
+        else
+        {
+            // Apply gravity when not grounded
+            movement.y -= gravity * Time.deltaTime;
+        }*/
+
+        controller.Move(transform.TransformDirection(movement) * speed * Time.deltaTime);
+
+        // Shooting
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            gun.StartShoot();
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            gun.StopShoot();
         }
     }
 }
