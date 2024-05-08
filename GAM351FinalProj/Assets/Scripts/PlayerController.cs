@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     AudioManager audioManager;
     
     private void Awake() {
-        audioManager = GameObject.FindObjectWithTag("Audio").GetComponent<AudioManager>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     private void Start()
     {
