@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         if (poweredUp)
         {
             // play power up sound
-            audioManager.PlaySFX(audioMananger.powerupSound);
+            audioManager.PlaySFX(audioManager.powerupSound);
             activeTime -= Time.deltaTime;
             if (activeTime <= 0f)
             {
