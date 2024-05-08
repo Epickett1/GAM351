@@ -5,8 +5,13 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
     public float speed;
+    public float damage;
     Vector3 target;
 
+    public BulletScript(float damage)
+    {
+        this.damage = damage;
+    }
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("PlayerTarget").GetComponent<Transform>().position;   

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,12 +13,20 @@ public class PlayerController : MonoBehaviour
     new Camera camera;
 
     [Header("Movement")]
-    public float speed = 5f;
+    public float speed = 10f;
     public float jumpStrength = 10f;
     public float gravity = 9.8f;
+    float ogSpeed;
 
     [Header("Combat")]
     public PlayerShoot gun;
+    public float gunDamage;
+    public float fireRate;
+    float ogGunDamage;
+    float ogFireRate;
+
+    bool poweredUp = false;
+    float activeTime = 0f;
     CharacterController controller;
     
 
@@ -26,11 +35,14 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
+        ogSpeed = speed;
+        ogGunDamage = gunDamage;
+        ogFireRate = fireRate;
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        // Camera
+        // ******** Camera ********
         float yCam = camera.transform.rotation.eulerAngles.y;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCam, 0), turnSpeed * Time.fixedDeltaTime);
 
@@ -43,7 +55,7 @@ public class PlayerController : MonoBehaviour
             ads.AimOut();
         }
 
-        // Player Movement
+        // ******** Player Movement ********
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -66,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(transform.TransformDirection(movement) * speed * Time.deltaTime);
 
-        // Shooting
+        // ******** Shooting ********
         if (Input.GetKey(KeyCode.Mouse0))
         {
             gun.StartShoot();
@@ -75,6 +87,45 @@ public class PlayerController : MonoBehaviour
         {
             gun.StopShoot();
         }
+
+        // ******** Power Ups ********
+        if (poweredUp)
+        {
+            activeTime -= Time.deltaTime;
+            if (activeTime <= 0f)
+            {
+                DeactivatePowerUps();
+            }
+        }
+    }
+
+
+    public void SpeedUp(float timer)
+    {
+        speed *= 2f;
+        poweredUp = true;
+        activeTime = timer;
+    }
+
+    public void ShootFaster(float timer)
+    {
+        fireRate /= 2f;
+        poweredUp = true;
+        activeTime = timer;
+    }
+
+    public void ShootStronger(float timer)
+    {
+        gunDamage *= 2;
+        poweredUp = true;
+        activeTime = timer;
+    }
+    public void DeactivatePowerUps()
+    {
+        poweredUp = false;
+        speed = ogSpeed;
+        gunDamage = ogGunDamage;
+        fireRate = ogFireRate;
     }
 }
 
