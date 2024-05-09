@@ -15,11 +15,5 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (transform.position == target) DestroyBullet();
-    }
-
-    public void DestroyBullet()
-    {
-        Destroy(gameObject);
     }
 }
