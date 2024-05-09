@@ -9806,17 +9806,17 @@ PrefabInstance:
     - target: {fileID: 3950787498359916009, guid: 3ceaa7e0de33f714faa55a17a1a40c7b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -326.8
+      value: -309.28
       objectReference: {fileID: 0}
     - target: {fileID: 3950787498359916009, guid: 3ceaa7e0de33f714faa55a17a1a40c7b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000038146973
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 3950787498359916009, guid: 3ceaa7e0de33f714faa55a17a1a40c7b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 136.1
+      value: 121.67
       objectReference: {fileID: 0}
     - target: {fileID: 3950787498359916009, guid: 3ceaa7e0de33f714faa55a17a1a40c7b,
         type: 3}
@@ -15162,7 +15162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755945197}
-  m_LocalRotation: {x: -0.07585687, y: 0.0619577, z: 0.0047226767, w: 0.9951807}
+  m_LocalRotation: {x: -0.07585687, y: 0.06195773, z: 0.0047226795, w: 0.9951807}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15681,7 +15681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-4578
+  m_Name: pb_Mesh-2314
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -23546,6 +23546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6705978382636886272}
+  spawnRate: 0
+  powerUps: []
 --- !u!198 &2011479270090443479
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -28946,6 +28948,16 @@ PrefabInstance:
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2410636551309729495, guid: 81d1fb7a7d29044f28915bdf264337df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2449292501750351441, guid: 81d1fb7a7d29044f28915bdf264337df,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6558269696033541319, guid: 81d1fb7a7d29044f28915bdf264337df,
         type: 3}
       propertyPath: m_Name
@@ -28964,7 +28976,7 @@ PrefabInstance:
     - target: {fileID: 6558269696033541320, guid: 81d1fb7a7d29044f28915bdf264337df,
         type: 3}
       propertyPath: speed
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6558269696033541320, guid: 81d1fb7a7d29044f28915bdf264337df,
         type: 3}
@@ -28994,7 +29006,7 @@ PrefabInstance:
     - target: {fileID: 6558269696033541323, guid: 81d1fb7a7d29044f28915bdf264337df,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6558269696033541323, guid: 81d1fb7a7d29044f28915bdf264337df,
         type: 3}
