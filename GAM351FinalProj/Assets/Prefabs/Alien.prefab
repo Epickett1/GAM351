@@ -5130,6 +5130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6705978382693997551}
+  spawnRate: 1
+  powerUps:
+  - {fileID: 4009893695906233958, guid: 896a2cd0a0cc5ec4d832e5f88ae41044, type: 3}
+  - {fileID: 6999387163792915270, guid: 8e883c91a0058f24daf5df5f5fb70b12, type: 3}
+  - {fileID: 4639583655179356427, guid: d03aa39fd69e1074f92fca7fc8a4d401, type: 3}
+  - {fileID: 5838406004106407205, guid: 98fb42e19bbebf84dbe6e855a07d919a, type: 3}
 --- !u!1 &4578308322090349433
 GameObject:
   m_ObjectHideFlags: 0
