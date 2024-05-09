@@ -14,9 +14,8 @@ public class PlayerController : MonoBehaviour
     new Camera camera;
 
     [Header("Movement")]
-    public float speed = 10f;
-    public float jumpStrength = 10f;
-    public float gravity = 9.8f;
+    public float speed = 12f;
+    public float jumpStrength = 1300f;
     float ogSpeed;
 
     [Header("Combat")]
@@ -65,7 +64,6 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
 
-        // Apply movement using Rigidbody
         rb.MovePosition(transform.position + transform.TransformDirection(movement) * speed * Time.deltaTime);
 
         // ******** Jumping ********
