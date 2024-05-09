@@ -32,12 +32,6 @@ public class PlayerController : MonoBehaviour
     bool heal = false;
     bool poweredUp = false;
     float activeTime = 0f;
-    CharacterController controller;
-    AudioManager audioManager;
-    
-    private void Awake() {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
     Rigidbody rb;
     Animator animator;
 
@@ -60,50 +54,24 @@ public class PlayerController : MonoBehaviour
             float yCam = camera.transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCam, 0), turnSpeed * Time.fixedDeltaTime);
 
-        // ******** Player Movement ********
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
-
-        rb.MovePosition(transform.position + transform.TransformDirection(movement) * speed * Time.deltaTime);
-
-        // ******** Jumping ********
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
-        {
-            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-        }
-
-        // ******** Shooting ********
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            gun.StartShoot();
-            // play laser sound
-            if (poweredUp) {
-                audioManager.PlaySFX(audioManager.heavyLaserSound);
-            }
-            else {
-                audioManager.PlaySFX(audioManager.lightLaserSound);
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            gun.StopShoot();
-        }
-
-        // ******** Power Ups ********
-        if (poweredUp)
-        {
-            // play power up sound
-            audioManager.PlaySFX(audioManager.powerupSound);
-            activeTime -= Time.deltaTime;
-            if (heal)
+            // ADS
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 ads.AimIn();
             }
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
                 ads.AimOut();
+            }
+
+            // ******** Shooting ********
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                gun.StartShoot();
+            }
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                gun.StopShoot();
             }
 
             // ******** Player Movement ********
@@ -197,5 +165,4 @@ public class PlayerController : MonoBehaviour
         alive = false;
     }
 }
-
 
