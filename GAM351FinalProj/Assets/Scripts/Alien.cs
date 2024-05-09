@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Alien : MonoBehaviour
@@ -12,10 +13,14 @@ public class Alien : MonoBehaviour
     public List<GameObject> powerUps = new List<GameObject>();
     
     Animator animator;
+    BoxCollider boxCollider;
+    NavMeshAgent navmesh;
     bool spawned = false;
     void Start()
     {
+        navmesh = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+        boxCollider = GetComponentInChildren<BoxCollider>();
     }
 
     public void Hit(float health, float maxHealth)
@@ -36,6 +41,8 @@ public class Alien : MonoBehaviour
     public void Die()
     {
         animator.SetBool("dead", true);
+        navmesh.enabled = false;
+        boxCollider.enabled = false;
         StartCoroutine(Despawn());
     }
 

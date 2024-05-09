@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerTarget
   - Audio
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -242,6 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  destroyOnContact: 1
   ignoreTags:
   - Player
+  destroyOnContact: 1
