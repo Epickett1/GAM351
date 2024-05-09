@@ -4940,8 +4940,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6203372936129401531}
-  spawnRate: 0
-  powerUps: []
 --- !u!114 &794503935260938860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4955,7 +4953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alien: {fileID: 794503935260938851}
-  Player: {fileID: 6558269696033541323, guid: 81d1fb7a7d29044f28915bdf264337df, type: 3}
+  Player: {fileID: 0}
 --- !u!195 &794503935260938851
 NavMeshAgent:
   m_ObjectHideFlags: 0
