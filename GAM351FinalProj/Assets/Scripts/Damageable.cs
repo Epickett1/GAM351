@@ -30,11 +30,9 @@ public class Damageable : MonoBehaviour
         {
             health -= damage;
         }
-        if (health > 0) // not dead
-        {
-            //hit.Play();
-            onDamageTaken.Invoke(health, maxHealth);
-        } else {        // dead
+        //hit.Play();
+        onDamageTaken.Invoke(health, maxHealth);
+        if (health <= 0){        // dead
             //death.Play();
             onDeath.Invoke();
         }

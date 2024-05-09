@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public PlayerController player;
-    public BulletScript bulletPrefab;
+    public Damage bulletPrefab;
     public bool isShooting = false;
 
     private float time = 0f;

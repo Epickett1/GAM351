@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [Header("Health")]
     public Image healthBar;
 
+    bool alive = true;
     bool heal = false;
     bool poweredUp = false;
     float activeTime = 0f;
@@ -47,55 +48,58 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // ******** Camera ********
-        float yCam = camera.transform.rotation.eulerAngles.y;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCam, 0), turnSpeed * Time.fixedDeltaTime);
-
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (alive)
         {
-            ads.AimIn();
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse1))
-        {
-            ads.AimOut();
-        }
+            // ******** Camera ********
+            float yCam = camera.transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yCam, 0), turnSpeed * Time.fixedDeltaTime);
 
-        // ******** Player Movement ********
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
-
-        rb.MovePosition(transform.position + transform.TransformDirection(movement) * speed * Time.deltaTime);
-
-        // ******** Jumping ********
-        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
-        {
-            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
-        }
-
-        // ******** Shooting ********
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            gun.StartShoot();
-        }
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            gun.StopShoot();
-        }
-
-        // ******** Power Ups ********
-        if (poweredUp)
-        {
-            activeTime -= Time.deltaTime;
-            if (heal)
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                Damageable player = GetComponent<Damageable>();
-                player.Heal(0.1f);
+                ads.AimIn();
             }
-            if (activeTime <= 0f)
+            if (Input.GetKeyUp(KeyCode.Mouse1))
             {
-                DeactivatePowerUps();
+                ads.AimOut();
+            }
+
+            // ******** Player Movement ********
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
+
+            Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
+
+            rb.MovePosition(transform.position + transform.TransformDirection(movement) * speed * Time.deltaTime);
+
+            // ******** Jumping ********
+            if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
+            {
+                rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
+            }
+
+            // ******** Shooting ********
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                gun.StartShoot();
+            }
+            if (Input.GetKeyUp(KeyCode.Mouse0))
+            {
+                gun.StopShoot();
+            }
+
+            // ******** Power Ups ********
+            if (poweredUp)
+            {
+                activeTime -= Time.deltaTime;
+                if (heal)
+                {
+                    Damageable player = GetComponent<Damageable>();
+                    player.Heal(0.1f);
+                }
+                if (activeTime <= 0f)
+                {
+                    DeactivatePowerUps();
+                }
             }
         }
     }
@@ -142,6 +146,12 @@ public class PlayerController : MonoBehaviour
         float healthRatio = Mathf.Clamp01(health / maxHealth);
         healthBar.rectTransform.localScale = new Vector3(healthBar.rectTransform.localScale.x, healthRatio, healthBar.rectTransform.localScale.z);
         healthBar.color = Color.Lerp(Color.red, Color.green, healthRatio);
+    }
+
+    public void Death()
+    {
+        animator.SetBool("death", true);
+        alive = false;
     }
 }
 
