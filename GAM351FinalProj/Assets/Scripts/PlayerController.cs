@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
     bool heal = false;
     bool poweredUp = false;
     float activeTime = 0f;
+    CharacterController controller;
+    AudioManager audioManager;
+    
+    private void Awake() {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     Rigidbody rb;
 
     private void Start()
@@ -76,6 +82,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             gun.StartShoot();
+            // play laser sound
+            if (poweredUp) {
+                audioManager.PlaySFX(audioManager.heavyLaserSound);
+            }
+            else {
+                audioManager.PlaySFX(audioManager.lightLaserSound);
+            }
         }
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
@@ -85,6 +98,8 @@ public class PlayerController : MonoBehaviour
         // ******** Power Ups ********
         if (poweredUp)
         {
+            // play power up sound
+            audioManager.PlaySFX(audioManager.powerupSound);
             activeTime -= Time.deltaTime;
             if (heal)
             {
