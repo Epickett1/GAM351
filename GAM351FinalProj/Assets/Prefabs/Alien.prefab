@@ -5130,7 +5130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6705978382693997551}
-  spawnRate: 5
+  spawnRate: 1
   powerUps:
   - {fileID: 4009893695906233958, guid: 896a2cd0a0cc5ec4d832e5f88ae41044, type: 3}
   - {fileID: 6999387163792915270, guid: 8e883c91a0058f24daf5df5f5fb70b12, type: 3}
@@ -14871,22 +14871,22 @@ PrefabInstance:
     - target: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.86274326
       objectReference: {fileID: 0}
     - target: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.5056423
       objectReference: {fileID: 0}
     - target: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
         type: 3}
@@ -14936,27 +14936,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7150853126553974066, guid: 0effea74f70d4a84f8d84038a6921807, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0effea74f70d4a84f8d84038a6921807, type: 3}
---- !u!1 &7920890802819080127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6430094183561875715, guid: 0effea74f70d4a84f8d84038a6921807,
-    type: 3}
-  m_PrefabInstance: {fileID: 3805788664759471804}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8520119592189254185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7920890802819080127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fd5e727e726b743941196d59f38e3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  ignoreTags: []
-  destroyOnContact: 0
 --- !u!4 &7920890802819498591 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6430094183562038499, guid: 0effea74f70d4a84f8d84038a6921807,
