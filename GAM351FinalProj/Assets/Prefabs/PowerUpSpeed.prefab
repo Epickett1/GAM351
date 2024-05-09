@@ -5840,7 +5840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUp: 0
-  activeTime: 5
+  activeTime: 15
 --- !u!114 &4639583655179356430
 MonoBehaviour:
   m_ObjectHideFlags: 0

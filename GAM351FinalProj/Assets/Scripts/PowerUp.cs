@@ -8,7 +8,8 @@ public class PowerUp : MonoBehaviour
     {
         speedIncrease,
         fireRateIncrease,
-        bulletDamageIncrease
+        bulletDamageIncrease,
+        heal
     }
     public powerUpType powerUp;
     public float activeTime = 5f;
@@ -27,10 +28,14 @@ public class PowerUp : MonoBehaviour
             else if (powerUp == powerUpType.fireRateIncrease)
             {
                 player.ShootFaster(activeTime);
-            } 
+            }
             else if (powerUp == powerUpType.bulletDamageIncrease)
             {
                 player.ShootStronger(activeTime);
+            }
+            else if (powerUp == powerUpType.heal)
+            {
+                player.Heal(activeTime);
             }
             Collected();
         }
