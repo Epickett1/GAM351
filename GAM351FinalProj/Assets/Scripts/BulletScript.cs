@@ -23,11 +23,6 @@ public class BulletScript : MonoBehaviour
         if (transform.position == target) DestroyBullet();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     public void DestroyBullet()
     {
         Destroy(gameObject);

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fire Rate
+  m_Name: Heal
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _EMISSION
@@ -107,9 +107,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.9845998, g: 1, b: 0, a: 1}
-    - _Color: {r: 0.98459977, g: 1, b: 0, a: 1}
-    - _EmissionColor: {r: 1, g: 0.9727183, b: 0, a: 1}
+    - _BaseColor: {r: 0.15601686, g: 0.5660378, b: 0.15307935, a: 1}
+    - _Color: {r: 0.15601683, g: 0.5660378, b: 0.1530793, a: 1}
+    - _EmissionColor: {r: 0.04195331, g: 0.5943396, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3636736125951706461

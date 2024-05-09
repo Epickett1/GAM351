@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,14 +26,17 @@ public class PlayerController : MonoBehaviour
     float ogGunDamage;
     float ogFireRate;
 
+    [Header("Health")]
+    public Image healthBar;
+
+    bool heal = false;
     bool poweredUp = false;
     float activeTime = 0f;
-    CharacterController controller;
-    
+    Rigidbody rb;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         ogSpeed = speed;
@@ -61,22 +65,14 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0f, moveVertical).normalized;
 
-/*        if (controller.isGrounded)
-        {
-             movement.y = 0f;
+        // Apply movement using Rigidbody
+        rb.MovePosition(transform.position + transform.TransformDirection(movement) * speed * Time.deltaTime);
 
-            if (Input.GetButtonDown("Jump"))
-            {
-                movement.y = jumpStrength;
-            }
+        // ******** Jumping ********
+        if (Input.GetButtonDown("Jump") && Mathf.Abs(rb.velocity.y) < 0.01f)
+        {
+            rb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
         }
-        else
-        {
-            // Apply gravity when not grounded
-            movement.y -= gravity * Time.deltaTime;
-        }*/
-
-        controller.Move(transform.TransformDirection(movement) * speed * Time.deltaTime);
 
         // ******** Shooting ********
         if (Input.GetKey(KeyCode.Mouse0))
@@ -92,13 +88,17 @@ public class PlayerController : MonoBehaviour
         if (poweredUp)
         {
             activeTime -= Time.deltaTime;
+            if (heal)
+            {
+                Damageable player = GetComponent<Damageable>();
+                player.Heal(0.1f);
+            }
             if (activeTime <= 0f)
             {
                 DeactivatePowerUps();
             }
         }
     }
-
 
     public void SpeedUp(float timer)
     {
@@ -120,12 +120,29 @@ public class PlayerController : MonoBehaviour
         poweredUp = true;
         activeTime = timer;
     }
+    
+    public void Heal(float timer)
+    {
+        heal = true;
+        poweredUp = true;
+        activeTime = timer;
+    }
+
     public void DeactivatePowerUps()
     {
         poweredUp = false;
+        heal = false;
         speed = ogSpeed;
         gunDamage = ogGunDamage;
         fireRate = ogFireRate;
     }
+
+    public void DrawHealth(float health, float maxHealth)
+    {
+        float healthRatio = Mathf.Clamp01(health / maxHealth);
+        healthBar.rectTransform.localScale = new Vector3(healthBar.rectTransform.localScale.x, healthRatio, healthBar.rectTransform.localScale.z);
+        healthBar.color = Color.Lerp(Color.red, Color.green, healthRatio);
+    }
 }
+
 
