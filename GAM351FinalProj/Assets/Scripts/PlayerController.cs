@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     new Camera camera;
 
     [Header("Movement")]
-    public float speed = 12f;
+    public float speed = 20f;
     public float jumpStrength = 1300f;
     float ogSpeed;
 
@@ -32,10 +32,12 @@ public class PlayerController : MonoBehaviour
     bool poweredUp = false;
     float activeTime = 0f;
     Rigidbody rb;
+    Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
         camera = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
         ogSpeed = speed;
