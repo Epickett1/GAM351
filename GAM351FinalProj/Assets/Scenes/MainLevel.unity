@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ae21178c51cdb49b9bcdf74f29dd0e10, type: 2}
 --- !u!1001 &2983583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3261,7 +3261,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: -0.04732275, y: 0.062067598, z: 0.0029462099, w: 0.9969451}
+  m_LocalRotation: {x: -0.04732275, y: 0.062067527, z: 0.0029462066, w: 0.9969451}
   m_LocalPosition: {x: -309.2, y: 5.8, z: 114.20001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10080,7 +10080,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100116, guid: 58a287e55289c437e81f1bbaa7243f81, type: 3}
       propertyPath: m_Name
-      value: alien character
+      value: alien
       objectReference: {fileID: 0}
     - target: {fileID: 400116, guid: 58a287e55289c437e81f1bbaa7243f81, type: 3}
       propertyPath: m_RootOrder
@@ -11330,7 +11330,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365517835}
-  m_LocalRotation: {x: -0.047322743, y: 0.062067576, z: 0.002946208, w: 0.9969451}
+  m_LocalRotation: {x: -0.047322743, y: 0.062067542, z: 0.0029462066, w: 0.9969451}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16857,7 +16857,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009665464}
-  m_LocalRotation: {x: -0.01855964, y: 0.06212668, z: 0.001155481, w: 0.99789506}
+  m_LocalRotation: {x: -0.018559616, y: 0.06212672, z: 0.0011554803, w: 0.99789506}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -17919,6 +17919,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2128021635}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2128125530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100116, guid: 58a287e55289c437e81f1bbaa7243f81,
+    type: 3}
+  m_PrefabInstance: {fileID: 1191177569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &2128125533
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128125530}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &2132336054
 PrefabInstance:
   m_ObjectHideFlags: 0
